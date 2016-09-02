@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7BBC5FA9-618F-45E3-9E3A-3D920CDF9671</string>
+	<key>IDESourceControlProjectName</key>
+	<string>example</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>099E8B30AD771E135D62DC30F67D82C31839CCEB</key>
+		<string>bitbucket.org:neilmendoza/ofxCurvedPoly.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>example/example.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>099E8B30AD771E135D62DC30F67D82C31839CCEB</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:neilmendoza/ofxCurvedPoly.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>099E8B30AD771E135D62DC30F67D82C31839CCEB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>099E8B30AD771E135D62DC30F67D82C31839CCEB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxCurvedPoly</string>
+		</dict>
+	</array>
+</dict>
+</plist>

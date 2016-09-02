@@ -1,7 +1,7 @@
 /*
  *  ofxCurvedPoly.h
  *
- *  Copyright (c) 2015, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2016, Neil Mendoza, http://www.neilmendoza.com
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,27 +31,6 @@
  */
 #pragma once
 
-#include "ofMain.h"
-#include "Bezier2D.h"
+#include "CurvedPoly.h"
 
-namespace itg
-{
-    class ofxCurvedPoly
-    {
-    public:
-        ofxCurvedPoly(float curveAmount = .25f);
-        
-        void push_back(const ofVec2f& point);
-        ofVec2f sampleAt(unsigned bezierIdx, float t);
-        unsigned getNumBeziers();
-        void createBeziers();
-        
-        void setCurveAmount(float curveAmount) { this->curveAmount; }
-        float getCurveAmount() const { return curveAmount; }
-        
-    private:
-        float curveAmount;
-        vector<ofVec2f> points;
-        vector<Bezier2D> beziers;
-    };
-}
+typedef nm::CurvedPoly ofxCurvedPoly;

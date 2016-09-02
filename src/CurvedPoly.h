@@ -1,7 +1,7 @@
 /*
- *  Bezier2D.h
+ *  CurvedPoly.h
  *
- *  Copyright (c) 2011, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2015, Neil Mendoza, http://www.neilmendoza.com
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -12,7 +12,7 @@
  *  * Redistributions in binary form must reproduce the above copyright 
  *    notice, this list of conditions and the following disclaimer in the 
  *    documentation and/or other materials provided with the distribution. 
- *  * Neither the name of 16b.it nor the names of its contributors may be used 
+ *  * Neither the name of Neil Mendoza nor the names of its contributors may be used 
  *    to endorse or promote products derived from this software without 
  *    specific prior written permission. 
  *  
@@ -31,9 +31,33 @@
  */
 #pragma once
 
-#include "Bezier.h"
+#include "ofMain.h"
+#include "Bezier2D.h"
 
 namespace nm
 {
-	class Bezier2D : public Bezier<ofVec2f> {};
+    class CurvedPoly
+    {
+    public:
+        CurvedPoly(float curveAmount = .25f);
+        
+        void push_back(const ofVec2f& point);
+        void push_back(float x, float y);
+        ofVec2f sampleAt(float t);
+        ofVec2f sampleAt(unsigned bezierIdx, float t);
+        unsigned getNumBeziers();
+        void createBeziers();
+        
+        inline void setCurveAmount(float curveAmount) { this->curveAmount = curveAmount; }
+        inline float getCurveAmount() const { return curveAmount; }
+        
+        inline ofVec2f operator[](const unsigned idx) const { return points[idx]; }
+        inline unsigned size() const { return points.size(); }
+        
+    private:
+        float curveAmount;
+        vector<ofVec2f> points;
+        vector<nm::Bezier2D> beziers;
+        float inverseNumBeziers;
+    };
 }

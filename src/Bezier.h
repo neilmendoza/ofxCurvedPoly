@@ -31,7 +31,7 @@
  */
 #pragma once
 
-namespace itg
+namespace nm
 {
 	template<class T>
     class Bezier

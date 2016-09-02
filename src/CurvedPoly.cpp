@@ -1,5 +1,5 @@
 /*
- *  ofxCurvedPoly.cpp
+ *  CurvedPoly.cpp
  *
  *  Copyright (c) 2015, Neil Mendoza, http://www.neilmendoza.com
  *  All rights reserved. 
@@ -29,52 +29,55 @@
  *  POSSIBILITY OF SUCH DAMAGE. 
  *
  */
-#include "ofxCurvedPoly.h"
+#include "CurvedPoly.h"
 
-namespace itg
+namespace nm
 {
-    ofxCurvedPoly::ofxCurvedPoly(float curveAmount) : curveAmount(curveAmount)
+    CurvedPoly::CurvedPoly(float curveAmount) : curveAmount(curveAmount)
     {
     }
     
-    void ofxCurvedPoly::push_back(const ofVec2f& point)
+    void CurvedPoly::push_back(const ofVec2f& point)
     {
         points.push_back(point);
         // just add a new bezier every time rather than clearing
         beziers.clear();
     }
     
-    unsigned ofxCurvedPoly::getNumBeziers()
+    void CurvedPoly::push_back(float x, float y)
+    {
+        push_back(ofVec2f(x, y));
+    }
+    
+    unsigned CurvedPoly::getNumBeziers()
     {
         if (points.size() > 2 && beziers.empty()) createBeziers();
         return beziers.size();
     }
     
-    ofVec2f ofxCurvedPoly::sampleAt(unsigned bezierIdx, float t)
+    ofVec2f CurvedPoly::sampleAt(unsigned bezierIdx, float t)
     {
         return beziers[bezierIdx].bezier3(t);
     }
     
-    void ofxCurvedPoly::createBeziers()
+    ofVec2f CurvedPoly::sampleAt(float t)
+    {
+        float bezierIdx = floor(t / inverseNumBeziers);
+        float bezierT = (t - bezierIdx * inverseNumBeziers) / inverseNumBeziers;
+        return beziers[bezierIdx].bezier3(bezierT);
+    }
+    
+    void CurvedPoly::createBeziers()
     {
         if (points.size() > 2)
         {
+            inverseNumBeziers = 1.f / points.size();
             for (unsigned i = 0; i < points.size(); ++i)
             {
-                beziers.push_back(Bezier2D());
+                beziers.push_back(nm::Bezier2D());
                 beziers.back().push_back(curveAmount * points[i] + (1.f - curveAmount) * points[(i + 1) % points.size()]);
                 beziers.back().push_back(points[(i + 1) % points.size()]);
                 beziers.back().push_back(curveAmount * points[(i + 1) % points.size()] + (1.f - curveAmount) * points[(i + 2) % points.size()]);
-                
-                //beziers.back().push_back(.5f * (points[i] + points[(i + 1) % points.size()]));
-                //beziers.back().push_back(points[(i + 1) % points.size()]);
-                //beziers.back().push_back(.5f * (points[(i + 1) % points.size()] + points[(i + 2) % points.size()]));
-                
-                
-                /*for (unsigned j = 0; j < 100; ++j)
-                {
-                    curve.push_back(bezier.bezier3(j / 99.f));
-                }*/
             }
         }
     }
