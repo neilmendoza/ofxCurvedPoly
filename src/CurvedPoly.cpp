@@ -70,7 +70,7 @@ namespace nm
             inverseNumBeziers = 1.f / points.size();
             for (unsigned i = 0; i < points.size(); ++i)
             {
-                beziers.push_back(nm::Bezier2D());
+                beziers.push_back(Bezier2d());
                 beziers.back().push_back(curveAmount * points[i] + (1.f - curveAmount) * points[(i + 1) % points.size()]);
                 beziers.back().push_back(points[(i + 1) % points.size()]);
                 beziers.back().push_back(curveAmount * points[(i + 1) % points.size()] + (1.f - curveAmount) * points[(i + 2) % points.size()]);

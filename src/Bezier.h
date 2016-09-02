@@ -142,5 +142,7 @@ namespace nm
 	private:
 		vector<T> points;
 	
-	};	
+	};
+    
+    typedef Bezier<ofVec2f> Bezier2d;
 }

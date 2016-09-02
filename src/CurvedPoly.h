@@ -32,7 +32,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Bezier2D.h"
+#include "Bezier.h"
 
 namespace nm
 {
@@ -54,7 +54,7 @@ namespace nm
         
     private:
         vector<ofVec2f> points;
-        vector<nm::Bezier2D> beziers;
+        vector<Bezier2d> beziers;
         float inverseNumBeziers;
     };
 }
