@@ -33,10 +33,6 @@
 
 namespace nm
 {
-    //CurvedPoly::CurvedPoly(float curveAmount) : curveAmount(curveAmount)
-    //{
-    //}
-    
     void CurvedPoly::push_back(const ofVec2f& point)
     {
         points.push_back(point);
@@ -47,6 +43,17 @@ namespace nm
     void CurvedPoly::push_back(float x, float y)
     {
         push_back(ofVec2f(x, y));
+    }
+    
+    void CurvedPoly::draw(unsigned numSamples)
+    {
+        ofBeginShape();
+        for (unsigned i = 0; i <= numSamples; ++i)
+        {
+            ofVec2f v = sampleAt((i % numSamples) / (float)numSamples);
+            ofVertex(v.x, v.y);
+        }
+        ofEndShape();
     }
     
     ofVec2f CurvedPoly::sampleAt(unsigned bezierIdx, float t)

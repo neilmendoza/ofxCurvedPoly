@@ -42,6 +42,8 @@ namespace nm
         void push_back(const ofVec2f& point);
         void push_back(float x, float y);
         
+        void draw(unsigned numSamples = 100);
+        
         ofVec2f sampleAt(float t);
         ofVec2f sampleAt(unsigned bezierIdx, float t);
         
