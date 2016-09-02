@@ -39,23 +39,20 @@ namespace nm
     class CurvedPoly
     {
     public:
-        CurvedPoly(float curveAmount = .25f);
-        
         void push_back(const ofVec2f& point);
         void push_back(float x, float y);
+        
         ofVec2f sampleAt(float t);
         ofVec2f sampleAt(unsigned bezierIdx, float t);
-        unsigned getNumBeziers();
-        void createBeziers();
         
-        inline void setCurveAmount(float curveAmount) { this->curveAmount = curveAmount; }
-        inline float getCurveAmount() const { return curveAmount; }
+        void createBeziers(float curveAmount = .25f);
         
         inline ofVec2f operator[](const unsigned idx) const { return points[idx]; }
         inline unsigned size() const { return points.size(); }
         
+        inline unsigned getNumBeziers() const { return beziers.size(); }
+        
     private:
-        float curveAmount;
         vector<ofVec2f> points;
         vector<nm::Bezier2D> beziers;
         float inverseNumBeziers;

@@ -33,9 +33,9 @@
 
 namespace nm
 {
-    CurvedPoly::CurvedPoly(float curveAmount) : curveAmount(curveAmount)
-    {
-    }
+    //CurvedPoly::CurvedPoly(float curveAmount) : curveAmount(curveAmount)
+    //{
+    //}
     
     void CurvedPoly::push_back(const ofVec2f& point)
     {
@@ -49,25 +49,21 @@ namespace nm
         push_back(ofVec2f(x, y));
     }
     
-    unsigned CurvedPoly::getNumBeziers()
-    {
-        if (points.size() > 2 && beziers.empty()) createBeziers();
-        return beziers.size();
-    }
-    
     ofVec2f CurvedPoly::sampleAt(unsigned bezierIdx, float t)
     {
+        if (points.size() > 2 && beziers.empty()) createBeziers();
         return beziers[bezierIdx].bezier3(t);
     }
     
     ofVec2f CurvedPoly::sampleAt(float t)
     {
+        if (points.size() > 2 && beziers.empty()) createBeziers();
         float bezierIdx = floor(t / inverseNumBeziers);
         float bezierT = (t - bezierIdx * inverseNumBeziers) / inverseNumBeziers;
         return beziers[bezierIdx].bezier3(bezierT);
     }
     
-    void CurvedPoly::createBeziers()
+    void CurvedPoly::createBeziers(float curveAmount)
     {
         if (points.size() > 2)
         {
