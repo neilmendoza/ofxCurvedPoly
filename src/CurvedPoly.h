@@ -47,7 +47,7 @@ namespace nm
         ofVec2f sampleAt(float t);
         ofVec2f sampleAt(unsigned bezierIdx, float t);
         
-        void createBeziers(float curveAmount = .25f);
+        void generateBeziers(float curveAmount = .25f);
         
         inline ofVec2f operator[](const unsigned idx) const { return points[idx]; }
         inline unsigned size() const { return points.size(); }

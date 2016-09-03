@@ -58,19 +58,19 @@ namespace nm
     
     ofVec2f CurvedPoly::sampleAt(unsigned bezierIdx, float t)
     {
-        if (points.size() > 2 && beziers.empty()) createBeziers();
+        if (points.size() > 2 && beziers.empty()) generateBeziers();
         return beziers[bezierIdx].bezier3(t);
     }
     
     ofVec2f CurvedPoly::sampleAt(float t)
     {
-        if (points.size() > 2 && beziers.empty()) createBeziers();
+        if (points.size() > 2 && beziers.empty()) generateBeziers();
         float bezierIdx = floor(t / inverseNumBeziers);
         float bezierT = (t - bezierIdx * inverseNumBeziers) / inverseNumBeziers;
         return beziers[bezierIdx].bezier3(bezierT);
     }
     
-    void CurvedPoly::createBeziers(float curveAmount)
+    void CurvedPoly::generateBeziers(float curveAmount)
     {
         if (points.size() > 2)
         {
